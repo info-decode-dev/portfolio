@@ -5,7 +5,7 @@ export const site = {
   phone: "+91 730 667 2492",
   location: "India",
   linkedin: "https://linkedin.com/in/althaf-abbas",
-  github: "https://github.com/althafabbas",
+  github: "https://github.com/info-decode-dev",
   tagline:
     "I craft high-performance interfaces for complex products — from cybersecurity dashboards to editorial brand experiences.",
   about:
