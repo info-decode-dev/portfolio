@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   title: "Althaf Abbas — Senior Frontend Developer",
   description:
     "Portfolio of Althaf Abbas, Senior Frontend Developer specializing in Next.js, React, and TypeScript.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+  },
 };
 
 export default function RootLayout({
