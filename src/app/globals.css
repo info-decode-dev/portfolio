@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0a0b0c;
+  --bg-soft: #111315;
+  --surface: #16191c;
+  --text: #ebe6dc;
+  --text-muted: #9a958c;
+  --accent: #2dd4bf;
+  --accent-soft: rgba(45, 212, 191, 0.14);
+  --line: rgba(235, 230, 220, 0.1);
+  --line-strong: rgba(235, 230, 220, 0.22);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --font-display: var(--font-syne);
+  --font-sans: var(--font-dm-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.noise {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.atmosphere {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 15% 10%, rgba(45, 212, 191, 0.12), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 90% 20%, rgba(235, 230, 220, 0.06), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(45, 212, 191, 0.05), transparent 55%);
+}
+
+.section-pad {
+  padding-inline: clamp(1.25rem, 5vw, 4.5rem);
+}
+
+.display {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
 }
