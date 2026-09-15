@@ -3,6 +3,9 @@ export const site = {
   role: "Senior Frontend Developer",
   email: "althafabbas777@gmail.com",
   phone: "+91 730 667 2492",
+  whatsapp: "https://wa.me/917306672492",
+  instagram:
+    "https://www.instagram.com/_althaf.abbas_?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
   location: "India",
   linkedin: "https://linkedin.com/in/althaf-abbas",
   github: "https://github.com/info-decode-dev",
@@ -14,11 +17,22 @@ export const site = {
     frontend: [
       "React.js",
       "Next.js",
+      "Vite",
       "TypeScript",
       "JavaScript (ES6+)",
       "HTML5",
       "CSS3",
+      "Sass",
       "Tailwind CSS",
+      "React Router",
+      "Swiper",
+    ],
+    animations: [
+      "Framer Motion",
+      "GSAP",
+      "ScrollTrigger",
+      "Lenis",
+      "Locomotive Scroll",
     ],
     performance: [
       "SSR",
@@ -29,8 +43,8 @@ export const site = {
       "Performance Optimization",
     ],
     design: ["Figma", "Adobe XD", "Photoshop", "Illustrator"],
-    backend: ["Node.js", "PostgreSQL", "RESTful APIs"],
-    other: ["Git", "GitHub", "Agile/Scrum", "UI/UX Optimization"],
+    backend: ["Node.js", "PostgreSQL", "RESTful APIs", "Axios"],
+    other: ["Git", "GitHub", "ESLint", "Vercel", "Agile/Scrum", "UI/UX Optimization"],
   },
   experience: [
     {
@@ -60,21 +74,38 @@ export const site = {
   ],
   projects: [
     {
-      title: "Riha Mehandi",
-      client: "Dubai-based fashion stylist",
+      title: "Riha Mehindi",
+      client: "Dubai fashion stylist",
       status: "Live",
       description:
-        "A sophisticated, minimalist portfolio for a Dubai fashion stylist — architected in Next.js with a visually striking editorial presence.",
-      stack: ["Next.js", "CSS"],
+        "A modern, interactive, and visually immersive portfolio website crafted for Riha Mehindi, a Dubai-based fashion stylist, with a strong focus on luxury aesthetics, creative storytelling, and engaging user experiences. The website combines elegant visual design, smooth interactions, refined typography, and dynamic transitions to create a premium digital experience that goes beyond a traditional portfolio. Every section is thoughtfully designed to reflect Riha’s personality and creative identity while maintaining a seamless and intuitive browsing experience. The project explores the balance between luxury, creativity, interaction, and usability, resulting in a distinctive portfolio that feels more like a digital experience than a conventional website.",
+      stack: [
+        {
+          label: "Core",
+          items: ["React 19", "Vite 6", "React Router DOM 7"],
+        },
+        {
+          label: "Animations & Interactions",
+          items: ["GSAP", "ScrollTrigger", "Lenis", "Locomotive Scroll"],
+        },
+        {
+          label: "UI",
+          items: ["Sass"],
+        },
+        {
+          label: "Development",
+          items: ["ESLint", "Vercel"],
+        },
+      ],
       href: "https://rihamehindi-portfolio.vercel.app",
     },
     {
       title: "Saudi Construction Company",
       client: "Saudi Arabia",
-      status: "UI/UX Done",
+      status: "In Progress",
       description:
         "Clean, responsive corporate website showcasing major infrastructure projects and client portfolios for a Saudi-based construction firm.",
-      stack: ["UI/UX", "Responsive Web"],
+      stack: ["UI/UX", "Figma"],
       href: null,
       preview: "web",
       previewSrc:
@@ -82,11 +113,28 @@ export const site = {
     },
     {
       title: "Student Hostel Booking",
-      client: "Study-abroad platform",
+      client: "Study-abroad platform — Canada",
       status: "In Progress",
       description:
-        "Dynamic web app for international students to search and book accommodations with advanced filtering and a seamless booking flow. Currently crafted as a mobile-first experience.",
-      stack: ["Next.js", "React", "Filtering"],
+        "A mobile-first study-abroad accommodation platform for Canada that helps international students discover and book verified hostels and shared stays near campus. The experience centers on fast search, advanced filtering, and a clear booking flow — designed for clarity on small screens without sacrificing depth. Currently focused on a polished mobile UI that makes finding the right room feel simple, guided, and trustworthy.",
+      stack: [
+        {
+          label: "Core",
+          items: ["React", "Vite"],
+        },
+        {
+          label: "Animations & Interactions",
+          items: ["Framer Motion"],
+        },
+        {
+          label: "UI",
+          items: ["Tailwind CSS"],
+        },
+        {
+          label: "Development",
+          items: ["ESLint", "Vercel"],
+        },
+      ],
       href: null,
       preview: "mobile",
       previewSrc: "https://autumn-rooms-dev.vercel.app/",
@@ -96,8 +144,25 @@ export const site = {
       client: "Real estate portal",
       status: "In Development",
       description:
-        "Modern real estate platform with optimized property filtering, search architecture, map integrations, and a polished browsing experience.",
-      stack: ["Maps", "Search", "Next.js"],
+        "A modern real estate portal for discovering homes and land across India — built around refined search, multi-facet filtering (location, BHK, construction status, and price), curated collections, and a smooth browsing experience. The interface balances editorial presentation with practical property discovery, using motion and polished UI patterns to keep exploration fast, engaging, and easy to navigate.",
+      stack: [
+        {
+          label: "Core",
+          items: ["Next.js", "React"],
+        },
+        {
+          label: "Animations & Interactions",
+          items: ["GSAP", "ScrollTrigger", "Lenis"],
+        },
+        {
+          label: "UI",
+          items: ["Tailwind CSS", "Swiper", "Lucide"],
+        },
+        {
+          label: "Development",
+          items: ["Axios", "Vercel"],
+        },
+      ],
       href: "https://infinite-properties-frontend.vercel.app/",
     },
   ],

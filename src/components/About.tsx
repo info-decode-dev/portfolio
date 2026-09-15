@@ -8,6 +8,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export function About() {
   const skillGroups = [
     { label: "Frontend", items: site.skills.frontend },
+    { label: "Animations & Interactions", items: site.skills.animations },
     { label: "Performance", items: site.skills.performance },
     { label: "Design", items: site.skills.design },
     { label: "Backend", items: site.skills.backend },
@@ -70,7 +71,9 @@ export function About() {
                       className="flex gap-3 text-sm leading-relaxed text-muted md:text-base"
                     >
                       <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                      {item}
+                      <span>
+                        <HighlightText text={item} />
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -113,5 +116,32 @@ export function About() {
         </motion.aside>
       </div>
     </section>
+  );
+}
+
+const GISEC_URL =
+  "https://gisec.ae/";
+
+function HighlightText({ text }: { text: string }) {
+  const parts = text.split(/(GISEC Cyber Security Event)/g);
+
+  return (
+    <>
+      {parts.map((part, index) =>
+        part === "GISEC Cyber Security Event" ? (
+          <a
+            key={`${part}-${index}`}
+            href={GISEC_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-accent! underline! decoration-accent underline-offset-2 transition-opacity hover:opacity-80"
+          >
+            GISEC Cyber Security Event
+          </a>
+        ) : (
+          <span key={`${part}-${index}`}>{part}</span>
+        ),
+      )}
+    </>
   );
 }

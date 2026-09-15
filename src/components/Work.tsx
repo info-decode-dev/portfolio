@@ -151,18 +151,53 @@ function ProjectRow({
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
           {project.description}
         </p>
-        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
-          {project.stack.map((item) => (
-            <span key={item} className="text-xs text-muted/80">
-              {item}
-            </span>
-          ))}
-        </div>
+        <StackList stack={project.stack} />
       </div>
 
       <span className="hidden text-sm text-muted transition-all group-hover:translate-x-1 group-hover:text-accent md:inline">
         {actionLabel}
       </span>
     </>
+  );
+}
+
+function isStackGroup(
+  item: string | { readonly label: string; readonly items: readonly string[] },
+): item is { readonly label: string; readonly items: readonly string[] } {
+  return typeof item === "object" && item !== null && "label" in item;
+}
+
+function StackList({ stack }: { stack: Project["stack"] }) {
+  const grouped = stack.length > 0 && isStackGroup(stack[0]);
+
+  if (grouped) {
+    return (
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        {stack.map((group) => {
+          if (!isStackGroup(group)) return null;
+          return (
+            <div key={group.label}>
+              <p className="text-xs tracking-wide text-text">{group.label}</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted/80">
+                {group.items.join(" · ")}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+      {stack.map((item) => {
+        if (isStackGroup(item)) return null;
+        return (
+          <span key={item} className="text-xs text-muted/80">
+            {item}
+          </span>
+        );
+      })}
+    </div>
   );
 }

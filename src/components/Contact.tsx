@@ -72,12 +72,20 @@ export function Contact() {
               LinkedIn
             </a>
             <a
-              href={site.github}
+              href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-full border border-line-strong px-6 py-3 text-sm transition-colors hover:border-accent hover:text-accent"
             >
-              GitHub
+              WhatsApp
+            </a>
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-line-strong px-6 py-3 text-sm transition-colors hover:border-accent hover:text-accent"
+            >
+              Instagram
             </a>
           </motion.div>
         </div>
