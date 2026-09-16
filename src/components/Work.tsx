@@ -6,6 +6,7 @@ import { site } from "@/data/site";
 import { MobilePreview } from "@/components/MobilePreview";
 import { WebPreview } from "@/components/WebPreview";
 import { MeteorLayer, useMeteorPass } from "@/components/MeteorPass";
+import { getSkillIcon } from "@/components/skillIcons";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -23,7 +24,7 @@ export function Work() {
   const closePreview = useCallback(() => setPreview(null), []);
 
   return (
-    <section id="work" className="section-pad relative py-24 md:py-32">
+    <section id="work" className="section-pad relative z-10 bg-transparent py-24 md:py-32">
       <MeteorLayer meteors={meteors} />
 
       <div className="mb-14 flex flex-col gap-6 md:mb-20 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
@@ -197,9 +198,23 @@ function StackList({ stack }: { stack: Project["stack"] }) {
           return (
             <div key={group.label}>
               <p className="text-xs tracking-wide text-text">{group.label}</p>
-              <p className="mt-1.5 text-xs leading-relaxed text-muted/80">
-                {group.items.join(" · ")}
-              </p>
+              <ul className="mt-2 flex flex-wrap gap-1.5">
+                {group.items.map((skill) => {
+                  const Icon = getSkillIcon(skill);
+                  return (
+                    <li
+                      key={skill}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-[11px] text-muted"
+                    >
+                      <Icon
+                        className="h-3 w-3 shrink-0 text-muted"
+                        aria-hidden
+                      />
+                      <span>{skill}</span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           );
         })}
@@ -208,15 +223,20 @@ function StackList({ stack }: { stack: Project["stack"] }) {
   }
 
   return (
-    <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+    <ul className="mt-4 flex flex-wrap gap-1.5">
       {stack.map((item) => {
         if (isStackGroup(item)) return null;
+        const Icon = getSkillIcon(item);
         return (
-          <span key={item} className="text-xs text-muted/80">
-            {item}
-          </span>
+          <li
+            key={item}
+            className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-[11px] text-muted"
+          >
+            <Icon className="h-3 w-3 shrink-0 text-muted" aria-hidden />
+            <span>{item}</span>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }

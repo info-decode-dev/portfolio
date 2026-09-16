@@ -6,8 +6,8 @@
   --surface: #16191c;
   --text: #ebe6dc;
   --text-muted: #9a958c;
-  --accent: #2dd4bf;
-  --accent-soft: rgba(45, 212, 191, 0.14);
+  --accent: #e8903a;
+  --accent-soft: rgba(232, 144, 58, 0.14);
   --line: rgba(235, 230, 220, 0.1);
   --line-strong: rgba(235, 230, 220, 0.22);
 }
@@ -32,6 +32,7 @@
 
 html {
   scroll-behavior: auto;
+  background: var(--bg);
 }
 
 body {
@@ -67,9 +68,154 @@ a {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 55% at 15% 10%, rgba(45, 212, 191, 0.12), transparent 55%),
+    radial-gradient(ellipse 80% 55% at 15% 10%, rgba(232, 144, 58, 0.12), transparent 55%),
     radial-gradient(ellipse 60% 45% at 90% 20%, rgba(235, 230, 220, 0.06), transparent 50%),
-    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(45, 212, 191, 0.05), transparent 55%);
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(232, 144, 58, 0.05), transparent 55%);
+}
+
+.blackhole-field {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  /* Bleed well past the hero into Work */
+  height: 165vh;
+  z-index: 0;
+  overflow: visible;
+}
+
+.blackhole-field-bg {
+  position: absolute;
+  inset: 0;
+  /* Soft outer arc only ? core fully punched out (no center circle) */
+  background-image: radial-gradient(
+    circle at 100% 0%,
+    transparent 0%,
+    transparent 48%,
+    rgba(232, 144, 58, 0.12) 52%,
+    rgba(115, 48, 0, 0.5) 56%,
+    rgba(232, 144, 58, 0.4) 59%,
+    rgba(115, 48, 0, 0.2) 63%,
+    transparent 70%
+  );
+  -webkit-mask-image:
+    radial-gradient(circle at 100% 0%, transparent 0%, transparent 48%, #000 56%, #000 100%),
+    linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(circle at 100% 0%, transparent 0%, transparent 48%, #000 56%, #000 100%),
+    linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.blackhole-glow {
+  pointer-events: none;
+  position: absolute;
+  top: -15%;
+  right: -22%;
+  width: 50%;
+  height: 65%;
+  background: radial-gradient(
+    ellipse 90% 80% at 100% 0%,
+    rgba(255, 140, 40, 0.16) 0%,
+    rgba(115, 48, 0, 0.1) 40%,
+    transparent 70%
+  );
+  animation: blackhole-pulse 7s ease-in-out infinite;
+  -webkit-mask-image: radial-gradient(circle at 100% 0%, transparent 0%, transparent 48%, #000 58%, #000 100%);
+  mask-image: radial-gradient(circle at 100% 0%, transparent 0%, transparent 48%, #000 58%, #000 100%);
+}
+
+.blackhole-vignette {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(10, 11, 12, 0.55) 0%, transparent 42%),
+    linear-gradient(to bottom, transparent 70%, rgba(10, 11, 12, 0.85) 100%);
+}
+
+.blackhole-particles {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: visible;
+}
+
+.blackhole-ring {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(200vw, 2000px);
+  height: min(200vw, 2000px);
+  /* Further out beyond the accretion band */
+  translate: 32% -32%;
+  pointer-events: none;
+}
+
+.blackhole-particle {
+  position: absolute;
+  border-radius: 999px;
+  translate: -50% -50%;
+  background: radial-gradient(
+    circle,
+    #ffe0b0 0%,
+    #e8903a 45%,
+    transparent 75%
+  );
+  box-shadow: 0 0 6px rgba(232, 144, 58, 0.55);
+  animation:
+    blackhole-particle-twinkle var(--twinkle-dur, 3s) ease-in-out infinite,
+    blackhole-particle-wander var(--spin-dur, 48s) linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes blackhole-particle-wander {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(var(--jitter-x), var(--jitter-y));
+  }
+  45% {
+    transform: translate(calc(var(--jitter-x) * -1.4), calc(var(--jitter-y) * 0.7));
+  }
+  70% {
+    transform: translate(calc(var(--jitter-x) * 0.5), calc(var(--jitter-y) * -1.3));
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes blackhole-particle-twinkle {
+  0%,
+  100% {
+    filter: brightness(0.7);
+    scale: 0.8;
+  }
+  35% {
+    filter: brightness(1.4);
+    scale: 1.2;
+  }
+  65% {
+    filter: brightness(0.9);
+    scale: 0.95;
+  }
+}
+
+@keyframes blackhole-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
 }
 
 .section-pad {
@@ -108,9 +254,9 @@ a {
 .nav-link-neon:focus-visible {
   color: var(--accent);
   text-shadow:
-    0 0 6px rgba(45, 212, 191, 0.95),
-    0 0 14px rgba(45, 212, 191, 0.65),
-    0 0 28px rgba(45, 212, 191, 0.35);
+    0 0 6px rgba(232, 144, 58, 0.95),
+    0 0 14px rgba(232, 144, 58, 0.65),
+    0 0 28px rgba(232, 144, 58, 0.35);
 }
 
 .nav-cta-neon {
@@ -124,13 +270,182 @@ a {
 .nav-cta-neon:hover,
 .nav-cta-neon:focus-visible {
   color: var(--accent);
-  border-color: rgba(45, 212, 191, 0.7);
+  border-color: rgba(232, 144, 58, 0.7);
   text-shadow:
-    0 0 6px rgba(45, 212, 191, 0.9),
-    0 0 16px rgba(45, 212, 191, 0.45);
+    0 0 6px rgba(232, 144, 58, 0.9),
+    0 0 16px rgba(232, 144, 58, 0.45);
   box-shadow:
-    0 0 12px rgba(45, 212, 191, 0.25),
-    inset 0 0 12px rgba(45, 212, 191, 0.08);
+    0 0 12px rgba(232, 144, 58, 0.25),
+    inset 0 0 12px rgba(232, 144, 58, 0.08);
+}
+
+/* Hire me creative focus */
+.hire-me-btn {
+  position: relative;
+  z-index: 60;
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    transform 1.25s ease,
+    color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    text-shadow 0.4s ease;
+}
+
+html[data-hire-hover] .hire-me-btn {
+  animation: hire-jerk-scale 1.8s ease-out forwards;
+  color: var(--accent);
+  border-color: rgba(232, 144, 58, 0.85);
+  text-shadow:
+    0 0 8px rgba(232, 144, 58, 1),
+    0 0 20px rgba(232, 144, 58, 0.55);
+  box-shadow:
+    0 0 16px rgba(232, 144, 58, 0.35),
+    inset 0 0 14px rgba(232, 144, 58, 0.1);
+}
+
+html.hire-restoring .hire-me-btn {
+  animation: none;
+  transform: scale(1);
+}
+
+.hire-scene {
+  transition: opacity 1.35s ease, filter 1.35s ease;
+}
+
+html[data-hire-hover]:not([data-hire-dim]) .hire-scene {
+  animation: hire-blink 0.42s steps(2, end) infinite;
+}
+
+html[data-hire-dim] .hire-scene {
+  animation: none;
+  opacity: 0.12;
+  filter: brightness(0.85);
+}
+
+html[data-hire-dim][data-meteor-jerk] .hire-scene {
+  animation: meteor-screen-jerk 1.65s ease-in-out;
+  opacity: 0.12;
+  filter: brightness(0.85);
+}
+
+html[data-meteor-jerk] header {
+  animation: meteor-screen-jerk 1.65s ease-in-out;
+}
+
+html[data-meteor-jerk] .hire-me-btn {
+  animation:
+    hire-jerk-scale 1.8s ease-out forwards,
+    meteor-btn-jerk 1.65s ease-in-out;
+}
+
+html.hire-restoring .hire-scene {
+  animation: none;
+  opacity: 1;
+  filter: brightness(1);
+  transition: opacity 1.35s ease, filter 1.35s ease;
+}
+
+@keyframes meteor-screen-jerk {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  8% {
+    transform: translate3d(-4px, 2px, 0);
+  }
+  16% {
+    transform: translate3d(5px, -3px, 0);
+  }
+  24% {
+    transform: translate3d(-3px, -2px, 0);
+  }
+  32% {
+    transform: translate3d(4px, 3px, 0);
+  }
+  42% {
+    transform: translate3d(-5px, 1px, 0);
+  }
+  52% {
+    transform: translate3d(3px, -4px, 0);
+  }
+  62% {
+    transform: translate3d(-2px, 3px, 0);
+  }
+  74% {
+    transform: translate3d(4px, -2px, 0);
+  }
+  86% {
+    transform: translate3d(-3px, 2px, 0);
+  }
+  94% {
+    transform: translate3d(2px, -1px, 0);
+  }
+}
+
+@keyframes meteor-btn-jerk {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  12% {
+    translate: -3px 2px;
+  }
+  28% {
+    translate: 4px -2px;
+  }
+  44% {
+    translate: -2px -3px;
+  }
+  60% {
+    translate: 3px 2px;
+  }
+  76% {
+    translate: -4px 1px;
+  }
+  90% {
+    translate: 2px -2px;
+  }
+}
+
+@keyframes hire-jerk-scale {
+  0% {
+    transform: scale(1);
+  }
+  18% {
+    transform: scale(1.04);
+  }
+  28% {
+    transform: scale(1.01);
+  }
+  42% {
+    transform: scale(1.1);
+  }
+  52% {
+    transform: scale(1.05);
+  }
+  68% {
+    transform: scale(1.16);
+  }
+  78% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.22);
+  }
+}
+
+@keyframes hire-blink {
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.28;
+    filter: brightness(1.35);
+  }
 }
 
 .social-btn {

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { lockPageScroll, unlockPageScroll } from "@/lib/scrollLock";
 
 type WebPreviewProps = {
   open: boolean;
@@ -30,12 +31,11 @@ export function WebPreview({ open, onClose, title, src }: WebPreviewProps) {
       if (event.key === "Escape") onClose();
     };
 
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    lockPageScroll();
     window.addEventListener("keydown", onKey);
 
     return () => {
-      document.body.style.overflow = previous;
+      unlockPageScroll();
       window.removeEventListener("keydown", onKey);
     };
   }, [open, onClose]);

@@ -41,7 +41,7 @@ export default function Icon() {
               width: 4,
               height: 4,
               borderRadius: 999,
-              background: "#2dd4bf",
+              background: "#e8903a",
               marginLeft: 1,
               marginBottom: 2,
             }}

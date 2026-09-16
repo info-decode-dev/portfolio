@@ -7,14 +7,14 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Contact() {
   return (
-    <section id="contact" className="section-pad relative py-24 md:py-32">
+    <section id="contact" className="section-pad relative z-10 py-24 md:py-32">
       <div className="relative overflow-hidden rounded-[2rem] border border-line bg-bg-soft px-6 py-16 md:px-14 md:py-24">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 80% 20%, rgba(45,212,191,0.12), transparent 55%)",
+              "radial-gradient(ellipse 70% 60% at 80% 20%, rgba(232,144,58,0.12), transparent 55%)",
           }}
         />
 

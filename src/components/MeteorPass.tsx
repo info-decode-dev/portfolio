@@ -128,7 +128,7 @@ export function MeteorLayer({ meteors }: { meteors: Meteor[] }) {
                 style={{
                   height: Math.max(4, meteor.head * 1.1),
                   background:
-                    "linear-gradient(90deg, transparent 0%, rgba(45,212,191,0.12) 35%, rgba(255,248,230,0.4) 75%, rgba(255,255,255,0.65) 100%)",
+                    "linear-gradient(90deg, transparent 0%, rgba(232,144,58,0.12) 35%, rgba(255,248,230,0.4) 75%, rgba(255,255,255,0.65) 100%)",
                   filter: `blur(${Math.max(3, meteor.head * 0.9)}px)`,
                   opacity: meteor.opacity,
                 }}
@@ -138,7 +138,7 @@ export function MeteorLayer({ meteors }: { meteors: Meteor[] }) {
                 style={{
                   height: Math.max(1.5, meteor.head * 0.35),
                   background:
-                    "linear-gradient(90deg, transparent 0%, rgba(45,212,191,0.2) 30%, rgba(255,250,240,0.75) 70%, #ffffff 100%)",
+                    "linear-gradient(90deg, transparent 0%, rgba(232,144,58,0.2) 30%, rgba(255,250,240,0.75) 70%, #ffffff 100%)",
                 }}
               />
               <span
@@ -147,8 +147,8 @@ export function MeteorLayer({ meteors }: { meteors: Meteor[] }) {
                   width: meteor.head,
                   height: meteor.head,
                   background:
-                    "radial-gradient(circle, #ffffff 0%, #fff8ec 40%, #2dd4bf 75%, transparent 100%)",
-                  boxShadow: `0 0 ${meteor.glow * 0.45}px ${meteor.head * 0.4}px rgba(255,255,255,0.95), 0 0 ${meteor.glow}px ${meteor.head * 0.7}px rgba(45,212,191,0.5)`,
+                    "radial-gradient(circle, #ffffff 0%, #fff8ec 40%, #e8903a 75%, transparent 100%)",
+                  boxShadow: `0 0 ${meteor.glow * 0.45}px ${meteor.head * 0.4}px rgba(255,255,255,0.95), 0 0 ${meteor.glow}px ${meteor.head * 0.7}px rgba(232,144,58,0.5)`,
                 }}
               />
             </div>

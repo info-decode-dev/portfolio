@@ -34,8 +34,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable} h-full`}>
-      <body className="min-h-full antialiased">
+    <html
+      lang="en"
+      className={`${syne.variable} ${dmSans.variable} h-full`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-full antialiased" suppressHydrationWarning>
         <div className="noise" aria-hidden />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

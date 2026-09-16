@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { lockPageScroll, unlockPageScroll } from "@/lib/scrollLock";
 
 const FRAME_WIDTH = 402;
 const FRAME_HEIGHT = 874;
@@ -37,14 +38,13 @@ export function MobilePreview({ open, onClose, title, src }: MobilePreviewProps)
       setScale(next);
     };
 
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    lockPageScroll();
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", updateScale);
     updateScale();
 
     return () => {
-      document.body.style.overflow = previous;
+      unlockPageScroll();
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("resize", updateScale);
     };
@@ -54,7 +54,7 @@ export function MobilePreview({ open, onClose, title, src }: MobilePreviewProps)
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

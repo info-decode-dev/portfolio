@@ -9,11 +9,9 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="section-pad relative flex min-h-[100svh] flex-col justify-end pb-16 pt-28 md:pb-24 md:pt-32"
+      className="section-pad relative z-10 flex min-h-[100svh] flex-col items-center justify-end overflow-visible pb-16 pt-28 md:pb-24 md:pt-32"
     >
-      <div className="atmosphere" aria-hidden />
-
-      <div className="relative z-10 max-w-6xl">
+      <div className="relative z-10 w-full max-w-6xl self-start">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,7 +52,9 @@ export function Hero() {
             className="group inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3 text-sm font-medium text-bg transition-transform hover:scale-[1.02]"
           >
             View selected work
-            <span className="transition-transform group-hover:translate-x-1">→</span>
+            <span className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
           </a>
           <a
             href="#contact"
@@ -69,7 +69,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.9, duration: 1 }}
-        className="relative z-10 mt-16 flex items-center gap-3 text-muted md:mt-20"
+        className="relative z-10 mt-16 flex w-full items-center gap-3 self-start text-muted md:mt-20"
       >
         <span className="h-px w-10 bg-line-strong" />
         <span className="eyebrow">Scroll to explore</span>

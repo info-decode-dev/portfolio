@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { site } from "@/data/site";
+import { getSkillIcon } from "@/components/skillIcons";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -15,7 +16,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="section-pad relative py-24 md:py-32">
+    <section id="about" className="section-pad relative z-10 py-24 md:py-32">
       <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-24">
         <div>
           <motion.p
@@ -93,10 +94,21 @@ export function About() {
           <div className="space-y-8">
             {skillGroups.map((group) => (
               <div key={group.label}>
-                <h3 className="mb-3 text-sm text-text">{group.label}</h3>
-                <p className="text-sm leading-relaxed text-muted">
-                  {group.items.join(" · ")}
-                </p>
+                <h3 className="mb-4 text-sm text-text">{group.label}</h3>
+                <ul className="flex flex-wrap gap-2">
+                  {group.items.map((skill) => {
+                    const Icon = getSkillIcon(skill);
+                    return (
+                      <li
+                        key={skill}
+                        className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-xs text-muted transition-colors hover:border-accent/50 hover:text-accent"
+                      >
+                        <Icon className="h-3.5 w-3.5 shrink-0 text-muted" aria-hidden />
+                        <span>{skill}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             ))}
           </div>
@@ -119,8 +131,7 @@ export function About() {
   );
 }
 
-const GISEC_URL =
-  "https://gisec.ae/";
+const GISEC_URL = "https://gisec.ae/";
 
 function HighlightText({ text }: { text: string }) {
   const parts = text.split(/(GISEC Cyber Security Event)/g);

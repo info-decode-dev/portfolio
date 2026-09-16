@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { registerLenis } from "@/lib/scrollLock";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -9,6 +10,8 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       duration: 1.1,
       smoothWheel: true,
     });
+
+    registerLenis(lenis);
 
     let frame = 0;
     const raf = (time: number) => {
@@ -19,6 +22,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     return () => {
       cancelAnimationFrame(frame);
+      registerLenis(null);
       lenis.destroy();
     };
   }, []);
