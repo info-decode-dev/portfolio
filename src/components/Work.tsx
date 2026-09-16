@@ -161,9 +161,7 @@ function ProjectRow({
             {project.status}
           </span>
         </div>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
-          {project.description}
-        </p>
+        <ProjectDescription text={project.description} />
         <StackList stack={project.stack} />
       </div>
 
@@ -178,6 +176,38 @@ function ProjectRow({
         <span className="hidden text-sm text-muted md:inline">{actionLabel}</span>
       )}
     </>
+  );
+}
+
+const DESCRIPTION_PREVIEW_LENGTH = 380;
+
+function ProjectDescription({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const needsToggle = text.length > DESCRIPTION_PREVIEW_LENGTH;
+
+  return (
+    <div className="mt-3 max-w-2xl">
+      <p
+        className={`text-sm leading-relaxed text-muted md:text-base ${
+          needsToggle && !expanded ? "line-clamp-5" : ""
+        }`}
+      >
+        {text}
+      </p>
+      {needsToggle ? (
+        <button
+          type="button"
+          className="mt-2 text-xs font-medium tracking-wide text-accent transition-opacity hover:opacity-80"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            setExpanded((value) => !value);
+          }}
+        >
+          {expanded ? "Read less" : "Read more"}
+        </button>
+      ) : null}
+    </div>
   );
 }
 
