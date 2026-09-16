@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="section-pad relative z-10 flex min-h-[100svh] flex-col items-center justify-end overflow-visible pb-16 pt-28 md:pb-24 md:pt-32"
+      className="section-pad relative z-10 flex min-h-[100svh] flex-col items-center justify-end overflow-x-clip pb-16 pt-28 md:pb-24 md:pt-32"
     >
       <div className="relative z-10 w-full max-w-6xl self-start">
         <motion.p

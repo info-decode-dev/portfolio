@@ -8,10 +8,10 @@ import { BlackHoleField } from "@/components/BlackHoleField";
 
 export default function Home() {
   return (
-    <main className="relative bg-bg text-text">
+    <main className="relative max-w-full overflow-x-clip bg-bg text-text">
       <Navbar />
       <GiantMeteor />
-      <div className="hire-scene relative overflow-visible">
+      <div className="hire-scene relative overflow-x-clip">
         <BlackHoleField />
         <Hero />
         <Work />
