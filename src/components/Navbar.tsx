@@ -21,7 +21,7 @@ export function Navbar() {
           "linear-gradient(to bottom, rgba(10,11,12,0.85), rgba(10,11,12,0.35), transparent)",
       }}
     >
-      <a href="#top" className="display text-lg tracking-tight text-text">
+      <a href="#top" className="display nav-link-neon text-lg tracking-tight text-text">
         {site.name.split(" ")[0]}
         <span className="text-accent">.</span>
       </a>
@@ -31,7 +31,7 @@ export function Navbar() {
           <a
             key={link.href}
             href={link.href}
-            className="eyebrow transition-colors hover:text-accent"
+            className="eyebrow nav-link-neon"
           >
             {link.label}
           </a>
@@ -40,7 +40,7 @@ export function Navbar() {
 
       <a
         href={`mailto:${site.email}`}
-        className="eyebrow rounded-full border border-line-strong px-4 py-2 transition-colors hover:border-accent hover:text-accent"
+        className="eyebrow nav-cta-neon rounded-full border border-line-strong px-4 py-2"
       >
         Hire me
       </a>

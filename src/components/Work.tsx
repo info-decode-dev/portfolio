@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { site } from "@/data/site";
 import { MobilePreview } from "@/components/MobilePreview";
 import { WebPreview } from "@/components/WebPreview";
+import { MeteorLayer, useMeteorPass } from "@/components/MeteorPass";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -17,11 +18,14 @@ export function Work() {
     src: string;
     mode: PreviewMode;
   } | null>(null);
+  const { meteors, trigger } = useMeteorPass();
 
   const closePreview = useCallback(() => setPreview(null), []);
 
   return (
     <section id="work" className="section-pad relative py-24 md:py-32">
+      <MeteorLayer meteors={meteors} />
+
       <div className="mb-14 flex flex-col gap-6 md:mb-20 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
         <div className="min-w-0 shrink lg:max-w-[58%]">
           <p className="eyebrow mb-4">Selected work</p>
@@ -49,6 +53,14 @@ export function Work() {
           const rowClass =
             "group grid w-full gap-4 py-8 text-left md:grid-cols-[auto_1fr_auto] md:items-center md:gap-8 md:py-10";
 
+          const actionLabel = previewMode
+            ? previewMode === "mobile"
+              ? "Preview mobile →"
+              : "Preview web →"
+            : project.href
+              ? "Open live →"
+              : project.client;
+
           return (
             <motion.li
               key={project.title}
@@ -74,11 +86,8 @@ export function Work() {
                   <ProjectRow
                     project={project}
                     index={index}
-                    actionLabel={
-                      previewMode === "mobile"
-                        ? "Preview mobile →"
-                        : "Preview web →"
-                    }
+                    actionLabel={actionLabel}
+                    onActionHover={trigger}
                   />
                 </button>
               ) : project.href ? (
@@ -91,7 +100,8 @@ export function Work() {
                   <ProjectRow
                     project={project}
                     index={index}
-                    actionLabel="Open live →"
+                    actionLabel={actionLabel}
+                    onActionHover={trigger}
                   />
                 </a>
               ) : (
@@ -99,7 +109,7 @@ export function Work() {
                   <ProjectRow
                     project={project}
                     index={index}
-                    actionLabel={project.client}
+                    actionLabel={actionLabel}
                   />
                 </div>
               )}
@@ -128,10 +138,12 @@ function ProjectRow({
   project,
   index,
   actionLabel,
+  onActionHover,
 }: {
   project: Project;
   index: number;
   actionLabel: string;
+  onActionHover?: () => void;
 }) {
   return (
     <>
@@ -154,9 +166,16 @@ function ProjectRow({
         <StackList stack={project.stack} />
       </div>
 
-      <span className="hidden text-sm text-muted transition-all group-hover:translate-x-1 group-hover:text-accent md:inline">
-        {actionLabel}
-      </span>
+      {onActionHover ? (
+        <span
+          className="hidden rounded-full border border-transparent px-4 py-2 text-sm text-muted transition-all group-hover:border-line-strong group-hover:text-accent hover:border-accent hover:bg-accent-soft hover:text-accent md:inline-flex md:items-center"
+          onMouseEnter={onActionHover}
+        >
+          {actionLabel}
+        </span>
+      ) : (
+        <span className="hidden text-sm text-muted md:inline">{actionLabel}</span>
+      )}
     </>
   );
 }

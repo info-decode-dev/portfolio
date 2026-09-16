@@ -59,7 +59,7 @@ export function Contact() {
           >
             <a
               href={`mailto:${site.email}`}
-              className="inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3 text-sm font-medium text-bg transition-transform hover:scale-[1.02]"
+              className="social-btn social-gmail inline-flex items-center gap-3 rounded-full border px-6 py-3 text-sm font-medium"
             >
               {site.email}
             </a>
@@ -67,7 +67,7 @@ export function Contact() {
               href={site.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-line-strong px-6 py-3 text-sm transition-colors hover:border-accent hover:text-accent"
+              className="social-btn social-linkedin inline-flex items-center rounded-full border border-line-strong px-6 py-3 text-sm"
             >
               LinkedIn
             </a>
@@ -75,7 +75,7 @@ export function Contact() {
               href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-line-strong px-6 py-3 text-sm transition-colors hover:border-accent hover:text-accent"
+              className="social-btn social-whatsapp inline-flex items-center rounded-full border border-line-strong px-6 py-3 text-sm"
             >
               WhatsApp
             </a>
@@ -83,7 +83,7 @@ export function Contact() {
               href={site.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-line-strong px-6 py-3 text-sm transition-colors hover:border-accent hover:text-accent"
+              className="social-btn social-instagram inline-flex items-center rounded-full px-6 py-3 text-sm"
             >
               Instagram
             </a>
